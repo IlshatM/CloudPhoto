@@ -13,10 +13,21 @@
       <PackageReference Include="ConsoleAppFramework" Version="4.2.3" />
       <PackageReference Include="ini" Version="1.0.7" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+      <PackageReference Include="RazorEngineCore" Version="2022.8.1" />
+      <PackageReference Include="RazorEngineCore.Extensions" Version="0.3.0" />
     </ItemGroup>
     
     <ItemGroup>
         <None Update="appsettings.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Pages/Album.cshtml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Pages/Error.cshtml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Pages/Index.cshtml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>

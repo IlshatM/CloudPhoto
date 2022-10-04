@@ -17,5 +17,6 @@ app.AddCommands<UploadHandler>();
 app.AddCommands<DownloadHandler>();
 app.AddCommands<ListHandler>();
 app.AddCommands<DeleteHandler>();
+app.AddCommands<MkSiteHandler>();
 
 app.Run();
