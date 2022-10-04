@@ -22,7 +22,7 @@ namespace CloudPhoto.Handlers
         {
             path ??= Environment.CurrentDirectory;
             var files = Directory.GetFiles(path);
-            if (!files.Any(file => _appSettings.FileExtensions.Contains(Path.GetExtension(file))))
+            if (!files.Any(file => Path.HasExtension(file) && _appSettings.FileExtensions.Contains(Path.GetExtension(file))))
             {
                 throw new ApplicationException("No photos in directory");
             }
