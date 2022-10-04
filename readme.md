@@ -11,3 +11,6 @@
 2. `nano .bashrc`
 3. Вставить строку `alias cloudphoto='{путь папки cloud_photo_linux}/CloudPhoto'`
 Пример, `alias cloudphoto='/usr/bin/cloud_photo_linux/CloudPhoto'`
+4. Сохранить изменения.
+
+### Готово!
