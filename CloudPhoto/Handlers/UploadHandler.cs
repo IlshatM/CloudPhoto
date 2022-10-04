@@ -8,13 +8,18 @@ namespace CloudPhoto.Handlers
     {
         private readonly IAmazonS3 _amazonS3;
         private readonly CloudSettings _cloudSettings;
-        private readonly AppSettings _appSettings;
 
-        public UploadHandler(IAmazonS3 amazonS3, CloudSettings cloudSettings, AppSettings appSettings)
+        private readonly string[] _allowedExtensions = new[]
+        {
+            ".jpg",
+            ".jpeg"
+        };
+
+        public UploadHandler(IAmazonS3 amazonS3, CloudSettings cloudSettings)
         {
             _amazonS3 = amazonS3;
             _cloudSettings = cloudSettings;
-            _appSettings = appSettings;
+
         }
 
         [Command("upload")]
@@ -22,14 +27,14 @@ namespace CloudPhoto.Handlers
         {
             path ??= Environment.CurrentDirectory;
             var files = Directory.GetFiles(path);
-            if (!files.Any(file => Path.HasExtension(file) && _appSettings.FileExtensions.Contains(Path.GetExtension(file))))
+            if (!files.Any(file => _allowedExtensions.Contains(Path.GetExtension(file))))
             {
                 throw new ApplicationException("No photos in directory");
             }
 
             foreach (var file in files)
             {
-                if (!_appSettings.FileExtensions.Contains(Path.GetExtension(file))) continue;
+                if (!_allowedExtensions.Contains(Path.GetExtension(file))) continue;
                 try
                 {
                     await _amazonS3.PutObjectAsync(new PutObjectRequest()
